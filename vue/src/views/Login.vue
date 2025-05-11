@@ -1,6 +1,6 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="shadow p-4 w-100 ">
+    <div class="row justify-content-center align-items-center vh-100 w-50 mx-auto m-0">
+        <div class="shadow p-5">
             <form @submit.prevent="login">
                 <div class="mb-3">
                     <input type="text" v-model="username" id="username" class="form-control" placeholder="Jméno" required />
@@ -18,6 +18,10 @@
 <script setup>
     import { ref } from 'vue';
     import { useUserStore } from '@/stores/user';
+    import { useRoute, useRouter } from 'vue-router';
+
+    const router = useRouter()
+    const route = useRoute()
 
     const username = ref("")
     const password = ref("")
@@ -29,10 +33,14 @@
                 username: username.value,
                 password: password.value
             })
+
+            if (userStore.isLoggedIn) {
+                const redirectTo = route.query.path || "/dashboard"
+                await router.push(redirectTo)
+            }
         } catch (error) {
             console.error("Login error", error)
         }
-
     }
 </script>
 
