@@ -41,11 +41,12 @@ router.beforeEach(async (to, from, next) => {
     }
 
     if (to.path === '/login' && userStore.isLoggedIn) {
-        return next('/dashboard')
+      const redirectTo = to.query.path || '/dashboard'
+      return next(redirectTo)
     }
 
     if (to.path !== '/login' && !userStore.isLoggedIn) {
-      return next('/login')
+      return next({ path: '/login', query: { path: to.fullPath } })
     }
 
     next()
