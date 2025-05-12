@@ -4,17 +4,25 @@ from django.utils.text import slugify
 from django.db.models import Sum, F
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+
 from datetime import timedelta
 
 
+User = get_user_model()
+
+
 class ProjectStatus(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="statuses")
     name = models.CharField(max_length=30)
+    color = models.CharField(max_length=7, null=True, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Unit(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="units")
     name = models.CharField(max_length=20)
 
     def __str__(self):
@@ -22,6 +30,7 @@ class Unit(models.Model):
 
 
 class Project(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="projects")
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
     start_date = models.DateField(default=timezone.now)
