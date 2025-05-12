@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-  import { useUserStore } from '@/stores/user';
+  import { useUserStore } from '@/stores/userStore';
   import MainLayout from '@/views/layout/MainLayout.vue';
 
   const userStore = useUserStore()

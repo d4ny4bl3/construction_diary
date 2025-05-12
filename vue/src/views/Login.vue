@@ -17,7 +17,7 @@
 
 <script setup>
     import { ref } from 'vue';
-    import { useUserStore } from '@/stores/user';
+    import { useUserStore } from '@/stores/userStore';
     import { useRoute, useRouter } from 'vue-router';
     import { useI18n } from 'vue-i18n';
 
@@ -48,7 +48,7 @@
 </script>
 
 <!-- <script>
-    import { useUserStore } from '@/stores/user';
+    import { useUserStore } from '@/stores/userStore';
 
     export default {
         data() {

@@ -3,7 +3,7 @@
         <Header />
         <div class="d-flex">
             <NavBar />
-            <main class="container">
+            <main class="container p-4">
                 <slot />
             </main>
         </div>

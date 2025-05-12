@@ -10,7 +10,7 @@
 
 <script setup>
     import { useRouter } from 'vue-router';
-    import { useUserStore } from '@/stores/user'
+    import { useUserStore } from '@/stores/userStore'
     import { useI18n } from 'vue-i18n';
 
     const { t } = useI18n()

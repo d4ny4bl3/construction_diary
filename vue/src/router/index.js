@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { useUserStore } from '@/stores/user';
+import { useUserStore } from '@/stores/userStore';
 import { watch } from "vue";
 
 import Login from "@/views/Login.vue";
 import Dashboard from "@/views/Dashboard.vue";
+import ProjectAddView from "@/views/layout/ProjectAddView.vue";
 
 const routes = [
     {
@@ -21,6 +22,11 @@ const routes = [
         meta: {
             title: "titles.dashboard"
         }
+    },
+    {
+        path: "/projects/add",
+        name: "ProjectAddView",
+        component: ProjectAddView,
     },
 ]
 
