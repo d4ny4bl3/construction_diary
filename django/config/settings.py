@@ -38,6 +38,12 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
 ]
 
+SESSION_COOKIE_AGE = 1800
+
+SESSION_SAVE_EVERY_REQUEST = False
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 # Application definition
 
