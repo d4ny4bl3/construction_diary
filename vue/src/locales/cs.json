@@ -17,6 +17,13 @@
         "logout": "Odhlásit se"
     },
     "utils": {
-
+        "create": "Vytvořit",
+        "view": "Zobrazit",
+        "save": "Uložit",
+        "saveChanges": "Uložit změny",
+        "delete": "Smazat",
+        "close": "Zavřít",
+        "send": "Odeslat",
+        "edit": "Upravit"
     }
 }
