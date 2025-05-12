@@ -12,7 +12,9 @@
         "dashboard": "Přehled"
     },
     "navbar": {
-
+        "brand": "Stavební deník",
+        "loggedInAs": "Přihlášen",
+        "logout": "Odhlásit se"
     },
     "utils": {
 
