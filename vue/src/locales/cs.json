@@ -3,10 +3,13 @@
 
     },
     "login": {
-
+        "username": "Uživatelské jméno",
+        "password": "Heslo",
+        "button": "Přihlásit se"
     },
     "titles": {
-
+        "login": "Přihlášení",
+        "dashboard": "Přehled"
     },
     "navbar": {
 

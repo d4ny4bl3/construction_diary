@@ -3,3 +3,4 @@ venv/
 *.env
 __pycache__/
 *.pyc
+django/diary/models_old.py

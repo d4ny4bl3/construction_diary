@@ -3,13 +3,13 @@
         <div class="shadow p-5">
             <form @submit.prevent="login">
                 <div class="mb-3">
-                    <input type="text" v-model="username" id="username" class="form-control" placeholder="Jméno" required />
+                    <input type="text" v-model="username" id="username" class="form-control" :placeholder="t('login.username')" required />
                 </div>
                 <div class="mb-3">
-                    <input type="password" v-model="password" id="password" class="form-control" placeholder="Heslo" required />
+                    <input type="password" v-model="password" id="password" class="form-control" :placeholder="t('login.password')" required />
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Přihlásit se</button>
+                <button type="submit" class="btn btn-primary w-100">{{t("login.button")}}</button>
             </form>
         </div>
     </div>
@@ -19,6 +19,9 @@
     import { ref } from 'vue';
     import { useUserStore } from '@/stores/user';
     import { useRoute, useRouter } from 'vue-router';
+    import { useI18n } from 'vue-i18n';
+
+    const { t } = useI18n()
 
     const router = useRouter()
     const route = useRoute()
