@@ -4,7 +4,7 @@ import api from '@/api';
 function getCsrfToken() {
     const match = document.cookie.match(/csrftoken=([^;]+)/)
     return match ? match[1] : null
-  }
+}
 
 export const useUserStore = defineStore("user", {
     state: () => ({
