@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
+from .models import Project
 from .serializers import ProjectSerializer
 
 
@@ -19,4 +20,36 @@ def create_project(request):
     if serializer.is_valid():
         project = serializer.save(user=user)
         return Response(ProjectSerializer(project).data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_project(request, slug):
+    user = request.user
+
+    try:
+        project = Project.objects.get(user=user, slug=slug)
+    except Project.DoesNotExist:
+        return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
+    print("Projekt ", project)
+    serializer = ProjectSerializer(project)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["PATCH"])
+@permission_classes([IsAuthenticated])
+def update_project(request, slug):
+    user = request.user
+
+    try:
+        project = Project.objects.get(user=user, slug=slug)
+    except Project.DoesNotExist:
+        return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ProjectSerializer(project, data=request.data, partial=True)
+    if serializer.is_valid():
+        project = serializer.save()
+        return Response(ProjectSerializer(project).data, status=status.HTTP_200_OK)
+
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
