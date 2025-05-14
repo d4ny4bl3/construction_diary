@@ -4,7 +4,8 @@ import { watch } from "vue";
 
 import Login from "@/views/Login.vue";
 import Dashboard from "@/views/Dashboard.vue";
-import ProjectAddView from "@/views/layout/ProjectAddView.vue";
+import ProjectAddView from "@/views/ProjectAddView.vue";
+import ProjectEditView from "@/views/ProjectEditView.vue";
 
 const routes = [
     {
@@ -27,6 +28,11 @@ const routes = [
         path: "/projects/add",
         name: "ProjectAddView",
         component: ProjectAddView,
+    },
+    {
+        path: "/projects/:slug/edit",
+        name: "ProjectEditView",
+        component: ProjectEditView,
     },
 ]
 
