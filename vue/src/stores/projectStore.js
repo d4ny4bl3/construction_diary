@@ -25,17 +25,17 @@ export const useProjectStore = defineStore("project", {
         },
 
         async fetchProject(slug) {
-            const response = await api.get(`/projects/${slug}`)
+            const response = await api.get(`/projects/${slug}/`)
             this.project = response.data
         },
 
         async createProject(data) {
-            const response = await api.post("/projects/", data)
+            const response = await api.post("/projects/add/", data)
             this.projects.push(response.data)
         },
 
         async updateProject(slug, data) {
-            const response = await api.patch(`/projects/${slug}/`, data)
+            const response = await api.patch(`/projects/${slug}/edit/`, data)
             this.project = response.data
         },
 
