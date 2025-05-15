@@ -14,7 +14,25 @@
         </div>
         <div class="col-6">
             <label for="EndDate" class="form-label fw-bold">Konec projektu</label>
-            <input type="date" class="form-control" id="EndDate" v-model="EndDate" required>
+            <input
+                type="date"
+                class="form-control"
+                id="EndDate"
+                v-model="EndDate"
+                :min="StartDate"
+            required>
+        </div>
+        <div class="col-6">
+            <label for="status" class="form-label fw-bold">Status</label>
+            <select class="form-select" v-model="status">
+                <option
+                    v-for="status in store.statuses"
+                    :key="status.id"
+                    :value="status.id"
+                >
+                    {{ status.name }}
+                </option>
+            </select>
         </div>
 
         <div class="my-4">
@@ -24,9 +42,11 @@
 </template>
 
 <script setup>
-    import { ref, watch, computed } from 'vue';
+    import { ref, watch, computed, onMounted } from 'vue';
+    import { useProjectStore } from '@/stores/projectStore';
     import { useI18n } from 'vue-i18n';
 
+    const store = useProjectStore()
     const { t } = useI18n()
 
     const props = defineProps({
@@ -37,6 +57,14 @@
         submitLabel: {
             type: String,
             default: "",
+        },
+    })
+
+    onMounted(async () => {
+        try {
+            await store.fetchStatuses()
+        } catch (error) {
+            console.error("Error loading statuses", error)
         }
     })
 
@@ -50,6 +78,7 @@
     const location = ref("")
     const StartDate = ref("")
     const EndDate = ref("")
+    const status = ref("")
 
     watch(
         () => props.project,
@@ -57,8 +86,9 @@
             if (newProject) {
                 name.value = newProject.name || ""
                 location.value = newProject.location || ""
-                StartDate.value = newProject.StartDate || ""
-                EndDate.value = newProject.EndDate || ""
+                StartDate.value = newProject.start_date || ""
+                EndDate.value = newProject.end_date || ""
+                status.value = newProject.status || null
             }
         },
         { immediate: true }
@@ -70,6 +100,7 @@
             location: location.value,
             start_date: StartDate.value,
             end_date: EndDate.value,
+            status: status.value,
         })
     }
 
