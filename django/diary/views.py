@@ -7,8 +7,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
-from .models import Project
-from .serializers import ProjectSerializer
+from .models import Project, ProjectStatus
+from .serializers import ProjectSerializer, ProjectStatusSerializer
 
 
 @api_view(["POST"])
@@ -32,7 +32,7 @@ def fetch_project(request, slug):
         project = Project.objects.get(user=user, slug=slug)
     except Project.DoesNotExist:
         return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
-    print("Projekt ", project)
+
     serializer = ProjectSerializer(project)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -53,3 +53,13 @@ def update_project(request, slug):
         return Response(ProjectSerializer(project).data, status=status.HTTP_200_OK)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_statuses(request):
+    user = request.user
+    project_status = ProjectStatus.objects.filter(user=user)
+
+    serializer = ProjectStatusSerializer(project_status, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
