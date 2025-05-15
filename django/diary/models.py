@@ -36,7 +36,7 @@ class Project(models.Model):
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(null=True, blank=True)
     status = models.ForeignKey(ProjectStatus, on_delete=models.SET_NULL, null=True, blank=True, related_name="projects")
-    slug = models.SlugField(max_length=120)
+    slug = models.SlugField(max_length=120, null=True, blank=True)
 
     def __str__(self):
         return self.name
