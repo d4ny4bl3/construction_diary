@@ -1,11 +1,6 @@
 import { defineStore } from 'pinia'
 import api from '@/api'
 
-function getCsrfToken() {
-    const match = document.cookie.match(/csrftoken=([^;]+)/)
-    return match ? match[1] : null
-}
-
 export const useProjectStore = defineStore("project", {
     state: () => ({
         projects: [],
@@ -24,8 +19,8 @@ export const useProjectStore = defineStore("project", {
             this.projects = response.data
         },
 
-        async fetchProject(slug) {
-            const response = await api.get(`/projects/${slug}/`)
+        async fetchProject(id, slug) {
+            const response = await api.get(`/projects/${id}/${slug}/`)
             this.project = response.data
         },
 
@@ -34,18 +29,18 @@ export const useProjectStore = defineStore("project", {
             this.projects.push(response.data)
         },
 
-        async updateProject(slug, data) {
-            const response = await api.patch(`/projects/${slug}/edit/`, data)
+        async updateProject(id, slug, data) {
+            const response = await api.patch(`/projects/${id}/${slug}/edit/`, data)
             this.project = response.data
         },
 
         async deleteProject(slug) {
-            const response = await api.delete(`/projects/${slug}`)
+            const response = await api.delete(`/projects/${slug}/`)
             this.projects = this.projects.filter(p => p.slug != slug)
         },
 
         async fetchStatuses() {
-            const response = await api.get(`/projects/statuses`)
+            const response = await api.get(`/projects/statuses/`)
             this.statuses = response.data
         }
     }
