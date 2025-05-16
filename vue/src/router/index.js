@@ -6,6 +6,7 @@ import Login from "@/views/Login.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import ProjectAddView from "@/views/ProjectAddView.vue";
 import ProjectEditView from "@/views/ProjectEditView.vue";
+import ProjectListView from "../views/ProjectListView.vue";
 
 const routes = [
     {
@@ -33,6 +34,11 @@ const routes = [
         path: "/projects/:id/:slug/edit",
         name: "ProjectEditView",
         component: ProjectEditView,
+    },
+    {
+        path:"/projects",
+        name: "ProjectListView",
+        component: ProjectListView,
     },
 ]
 
