@@ -27,6 +27,8 @@ export const useProjectStore = defineStore("project", {
         async createProject(data) {
             const response = await api.post("/projects/add/", data)
             this.projects.push(response.data)
+            this.project = response.data
+            return response.data
         },
 
         async updateProject(id, slug, data) {

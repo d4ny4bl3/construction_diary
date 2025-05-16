@@ -9,14 +9,22 @@
     import ProjectForm from '@/components/ProjectForm.vue';
     import { useI18n } from 'vue-i18n';
     import { useProjectStore } from '@/stores/projectStore';
+    import { useRouter } from 'vue-router';
 
     const { t } = useI18n()
     const store = useProjectStore()
+    const router = useRouter()
 
     const createProject = async (data) => {
         try {
-            await store.createProject(data)
-            router.push({name: "Dashboard"})
+            const created = await store.createProject(data)
+            router.push({
+                name: "ProjectDetailView",
+                params: {
+                    id: created.id,
+                    slug: created.slug,
+                }
+            })
         } catch (error) {
             console.error("Error adding project", error)
         }

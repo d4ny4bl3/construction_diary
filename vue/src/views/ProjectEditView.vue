@@ -15,12 +15,26 @@
     const route = useRoute()
     const router = useRouter()
     const store = useProjectStore()
+    const id = route.params.id
+    const slug = route.params.slug
 
     onMounted(() => {
-        store.fetchProject(route.params.slug)
+        store.fetchProject(id, slug)
     })
 
     const updateProject  = async (data) => {
-        await store.updateProject(route.params.slug, data)
+        try {
+            await store.updateProject(id, slug, data)
+            router.push({
+            name: "ProjectDetailView",
+            params: {
+                id: store.project.id,
+                slug: store.project.slug,
+            }
+        })
+        } catch (error) {
+            console.error("Error updating project", error)
+        }
+
     }
 </script>
