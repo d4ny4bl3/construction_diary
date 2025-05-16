@@ -23,20 +23,6 @@ def create_project(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def fetch_project(request, project_id, slug):
-    user = request.user
-
-    try:
-        project = Project.objects.get(id=project_id, user=user, slug=slug)
-    except Project.DoesNotExist:
-        return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
-
-    serializer = ProjectSerializer(project)
-    return Response(serializer.data, status=status.HTTP_200_OK)
-
-
 @api_view(["PATCH"])
 @permission_classes([IsAuthenticated])
 def update_project(request, project_id, slug):
@@ -53,6 +39,30 @@ def update_project(request, project_id, slug):
         return Response(ProjectSerializer(project).data, status=status.HTTP_200_OK)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_projects(request):
+    user = request.user
+    projects = Project.objects.filter(user=user).order_by("-id")
+
+    serializer = ProjectSerializer(projects, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_project(request, project_id, slug):
+    user = request.user
+
+    try:
+        project = Project.objects.get(id=project_id, user=user, slug=slug)
+    except Project.DoesNotExist:
+        return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = ProjectSerializer(project)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
