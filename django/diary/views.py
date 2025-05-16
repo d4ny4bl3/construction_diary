@@ -25,11 +25,11 @@ def create_project(request):
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
-def fetch_project(request, slug):
+def fetch_project(request, project_id, slug):
     user = request.user
 
     try:
-        project = Project.objects.get(user=user, slug=slug)
+        project = Project.objects.get(id=project_id, user=user, slug=slug)
     except Project.DoesNotExist:
         return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -39,11 +39,11 @@ def fetch_project(request, slug):
 
 @api_view(["PATCH"])
 @permission_classes([IsAuthenticated])
-def update_project(request, slug):
+def update_project(request, project_id, slug):
     user = request.user
 
     try:
-        project = Project.objects.get(user=user, slug=slug)
+        project = Project.objects.get(id=project_id, user=user, slug=slug)
     except Project.DoesNotExist:
         return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
 
