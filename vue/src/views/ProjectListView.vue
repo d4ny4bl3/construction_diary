@@ -1,5 +1,11 @@
 <template>
-    <div class="card">
+    <RouterLink
+        :to="{ name: 'ProjectAddView' }"
+        class="btn btn-primary mb-3"
+    >
+        Nový projekt
+    </RouterLink>
+    <div class="card mb-3">
         <div class="card-header">
             <h3>Seznam projektů</h3>
         </div>

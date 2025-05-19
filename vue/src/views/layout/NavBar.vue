@@ -8,12 +8,7 @@
             </ul>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <RouterLink to="/projects/add" class="nav-link text-white">Přidat projekt</RouterLink>
-                </li>
-            </ul>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <RouterLink to="/projects/" class="nav-link text-white">Seznam projektů</RouterLink>
+                    <RouterLink :to="{ name: 'ProjectListView' }" class="nav-link text-white">Projekty</RouterLink>
                 </li>
             </ul>
         </div>
