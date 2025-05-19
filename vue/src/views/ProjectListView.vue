@@ -26,7 +26,7 @@
                         <td>{{ project.location }}</td>
                         <td>{{ d(new Date(project.start_date), "dateOnly") }}</td>
                         <td>{{ d(new Date(project.end_date), "dateOnly") }}</td>
-                        <td>{{ project.status_name }}</td>
+                        <td>{{ project.status ? project.status_name : "--" }}</td>
                     </tr>
                 </tbody>
             </table>

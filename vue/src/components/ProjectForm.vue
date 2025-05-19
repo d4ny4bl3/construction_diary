@@ -20,7 +20,7 @@
                 id="EndDate"
                 v-model="EndDate"
                 :min="StartDate"
-            required>
+            >
         </div>
         <div class="col-6">
             <label for="status" class="form-label fw-bold">Status</label>
@@ -99,7 +99,7 @@
             name: name.value,
             location: location.value,
             start_date: StartDate.value,
-            end_date: EndDate.value,
+            end_date: EndDate.value || null,
             status: status.value,
         })
     }

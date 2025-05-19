@@ -18,8 +18,12 @@
     const id = route.params.id
     const slug = route.params.slug
 
-    onMounted(() => {
-        store.fetchProject(id, slug)
+    onMounted(async () => {
+        try {
+            await store.fetchProject(id, slug)
+        } catch (error) {
+            console.error("Error loading project", error)
+        }
     })
 
     const updateProject  = async (data) => {
