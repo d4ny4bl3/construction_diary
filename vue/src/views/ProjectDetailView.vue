@@ -1,0 +1,67 @@
+<template>
+    <h1 class="mb-3">Detail projektu</h1>
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <h3>{{ store.project.name }}</h3>
+                <RouterLink
+                    :to="{ name: 'ProjectEditView', params: { id: id, slug: slug } }"
+                    class="btn btn-primary"
+                >
+                    Upravit
+                </RouterLink>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <dl class="row gy-3 align-items-center">
+                        <dt class="col-4">Začátek projektu</dt>
+                        <dd class="col-8">{{ project.start_date ? d(new Date(project.start_date), "dateOnly") : "--" }}</dd>
+
+                        <dt class="col-4">Konec projektu</dt>
+                        <dd class="col-8">{{ project.end_date ? d(new Date(project.end_date), "dateOnly") : "--" }}</dd>
+                    </dl>
+                </div>
+                <div class="col-6">
+                    <dl class="row gy-3">
+                        <dt class="col-4">Lokace</dt>
+                        <dd class="col-8">{{ store.project.location }}</dd>
+
+                        <dt class="col-4">Stav</dt>
+                        <dd class="col-8">{{ store.project.status_name }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+    import { onMounted, computed } from 'vue';
+    import { useProjectStore } from '@/stores/projectStore';
+    import { useRoute } from 'vue-router';
+    import { useI18n } from 'vue-i18n';
+
+    const store = useProjectStore()
+    const route = useRoute()
+
+    const id = route.params.id
+    const slug = route.params.slug
+
+    const { t, d } = useI18n()
+
+    const project = computed(() => store.project)
+    const statuses = computed(() => store.statuses)
+
+    onMounted(async () => {
+        try {
+            await Promise.all([
+                store.fetchProject(id, slug),
+                store.fetchStatuses()
+            ])
+        } catch (error) {
+            console.error("Error loading project or statuses", error)
+        }
+    })
+</script>
