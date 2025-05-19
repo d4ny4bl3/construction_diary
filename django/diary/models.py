@@ -33,7 +33,7 @@ class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="projects")
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
-    start_date = models.DateField(default=timezone.now)
+    start_date = models.DateField(default=timezone.now, null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     status = models.ForeignKey(ProjectStatus, on_delete=models.SET_NULL, null=True, blank=True, related_name="projects")
     slug = models.SlugField(max_length=120, null=True, blank=True)

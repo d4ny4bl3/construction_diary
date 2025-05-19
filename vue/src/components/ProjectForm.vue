@@ -10,7 +10,7 @@
         </div>
         <div class="col-6">
             <label for="StartDate" class="form-label fw-bold">Začátek projektu</label>
-            <input type="date" class="form-control" id="StartDate" v-model="StartDate" required>
+            <input type="date" class="form-control" id="StartDate" v-model="StartDate" >
         </div>
         <div class="col-6">
             <label for="EndDate" class="form-label fw-bold">Konec projektu</label>
