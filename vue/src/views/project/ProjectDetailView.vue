@@ -1,5 +1,5 @@
 <template>
-    <h1 class="mb-3">Detail projektu</h1>
+    <h1 class="mb-3">{{ t("headers.projectDetail") }}</h1>
     <div class="card mb-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">
@@ -8,7 +8,7 @@
                     :to="{ name: 'ProjectEditView', params: { id: id, slug: slug } }"
                     class="btn btn-primary"
                 >
-                    Upravit
+                    {{ t("utils.edit") }}
                 </RouterLink>
             </div>
         </div>
@@ -16,19 +16,19 @@
             <div class="row">
                 <div class="col-6">
                     <dl class="row gy-3 align-items-center">
-                        <dt class="col-4">Začátek projektu</dt>
+                        <dt class="col-4">{{ t("project.start_date") }}</dt>
                         <dd class="col-8">{{ project.start_date ? d(new Date(project.start_date), "dateOnly") : "--" }}</dd>
 
-                        <dt class="col-4">Konec projektu</dt>
+                        <dt class="col-4">{{ t("project.end_date") }}</dt>
                         <dd class="col-8">{{ project.end_date ? d(new Date(project.end_date), "dateOnly") : "--" }}</dd>
                     </dl>
                 </div>
                 <div class="col-6">
                     <dl class="row gy-3">
-                        <dt class="col-4">Lokace</dt>
+                        <dt class="col-4">{{ t("project.location") }}</dt>
                         <dd class="col-8">{{ project.location }}</dd>
 
-                        <dt class="col-4">Stav</dt>
+                        <dt class="col-4">{{ t("project.status") }}</dt>
                         <dd class="col-8">{{ project.status_name }}</dd>
                     </dl>
                 </div>

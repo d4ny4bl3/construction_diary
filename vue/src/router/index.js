@@ -30,6 +30,9 @@ const routes = [
         path: "/projects/add",
         name: "ProjectAddView",
         component: ProjectAddView,
+        meta: {
+            title: "titles.projectAdd"
+        }
     },
     {
         path: "/projects/:id/:slug/edit",
@@ -40,11 +43,17 @@ const routes = [
         path:"/projects",
         name: "ProjectListView",
         component: ProjectListView,
+        meta: {
+            title: "titles.projects"
+        }
     },
     {
         path:"/projects/:id/:slug",
         name: "ProjectDetailView",
         component: ProjectDetailView,
+        meta: {
+            title: "titles.projectDetail"
+        }
     },
 ]
 

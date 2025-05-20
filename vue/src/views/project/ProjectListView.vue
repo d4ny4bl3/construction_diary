@@ -3,21 +3,21 @@
         :to="{ name: 'ProjectAddView' }"
         class="btn btn-primary mb-3"
     >
-        Nový projekt
+        {{ t("project.buttonNew") }}
     </RouterLink>
     <div class="card mb-3">
         <div class="card-header">
-            <h3>Seznam projektů</h3>
+            <h3>{{ t("headers.projects") }}</h3>
         </div>
         <div class="card-body">
             <table class="table table-striped table-hover table-responsive-md">
                 <thead>
                     <tr>
-                        <th>Název projektu</th>
-                        <th>Lokace</th>
-                        <th>Začátek projektu</th>
-                        <th>Konec projektu</th>
-                        <th>Stav</th>
+                        <th>{{ t("project.name") }}</th>
+                        <th>{{ t("project.location") }}</th>
+                        <th>{{ t("project.start_date") }}</th>
+                        <th>{{ t("project.end_date") }}</th>
+                        <th>{{ t("project.status") }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +46,7 @@
     import { useProjectStore } from '@/stores/projectStore';
     import { useRouter } from 'vue-router';
 
-    const { d } = useI18n()
+    const { t, d } = useI18n()
     const router = useRouter()
     const store = useProjectStore()
 

@@ -1,5 +1,5 @@
 <template>
-    <h1>Project Edit View</h1>
+    <h1>{{ t("headers.projectEdit") }}</h1>
 
     <ProjectForm @submit="updateProject" :project="store.project" :submit-label="t('utils.saveChanges')" />
 </template>

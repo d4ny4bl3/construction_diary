@@ -1,19 +1,19 @@
 <template>
     <form class="row g-3 p-3" ref="form" @submit.prevent="submit">
         <div class="col-12">
-            <label for="name" class="form-label fw-bold">Jmeno projektu</label>
+            <label for="name" class="form-label fw-bold">{{ t("project.name") }}</label>
             <input type="text" class="form-control" id="name" v-model="name" required>
         </div>
         <div class="col-12">
-            <label for="location" class="form-label fw-bold">Lokace</label>
+            <label for="location" class="form-label fw-bold">{{ t("project.location") }}</label>
             <input type="text" class="form-control" id="location" v-model="location" required>
         </div>
         <div class="col-6">
-            <label for="StartDate" class="form-label fw-bold">Začátek projektu</label>
+            <label for="StartDate" class="form-label fw-bold">{{ t("project.start_date") }}</label>
             <input type="date" class="form-control" id="StartDate" v-model="StartDate" >
         </div>
         <div class="col-6">
-            <label for="EndDate" class="form-label fw-bold">Konec projektu</label>
+            <label for="EndDate" class="form-label fw-bold">{{ t("project.end_date") }}</label>
             <input
                 type="date"
                 class="form-control"
@@ -23,7 +23,7 @@
             >
         </div>
         <div class="col-6">
-            <label for="status" class="form-label fw-bold">Status</label>
+            <label for="status" class="form-label fw-bold">{{ t("project.status") }}</label>
             <select class="form-select" v-model="status">
                 <option
                     v-for="status in store.statuses"
