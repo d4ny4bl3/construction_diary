@@ -26,10 +26,10 @@
                 <div class="col-6">
                     <dl class="row gy-3">
                         <dt class="col-4">Lokace</dt>
-                        <dd class="col-8">{{ store.project.location }}</dd>
+                        <dd class="col-8">{{ project.location }}</dd>
 
                         <dt class="col-4">Stav</dt>
-                        <dd class="col-8">{{ store.project.status_name }}</dd>
+                        <dd class="col-8">{{ project.status_name }}</dd>
                     </dl>
                 </div>
             </div>

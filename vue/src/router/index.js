@@ -4,10 +4,10 @@ import { watch } from "vue";
 
 import Login from "@/views/Login.vue";
 import Dashboard from "@/views/Dashboard.vue";
-import ProjectAddView from "@/views/ProjectAddView.vue";
-import ProjectEditView from "@/views/ProjectEditView.vue";
-import ProjectListView from "@/views/ProjectListView.vue";
-import ProjectDetailView from "@/views/ProjectDetailView.vue";
+import ProjectAddView from "@/views/project/ProjectAddView.vue";
+import ProjectEditView from "@/views/project/ProjectEditView.vue";
+import ProjectListView from "@/views/project/ProjectListView.vue";
+import ProjectDetailView from "@/views/project/ProjectDetailView.vue";
 
 const routes = [
     {
