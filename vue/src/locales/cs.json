@@ -9,7 +9,17 @@
     },
     "titles": {
         "login": "Přihlášení",
-        "dashboard": "Přehled"
+        "dashboard": "Přehled",
+        "projects": "Seznam projektů",
+        "projectAdd": "Vytvořit projekt",
+        "projectEdit": "Upravit projekt",
+        "projectDetail": "Detail projektu"
+    },
+    "headers" : {
+        "projects": "Seznam projektů",
+        "projectAdd": "Vytvořit projekt",
+        "projectEdit": "Upravit projekt",
+        "projectDetail": "Detail projektu"
     },
     "navbar": {
         "brand": "Stavební deník",
@@ -25,5 +35,13 @@
         "close": "Zavřít",
         "send": "Odeslat",
         "edit": "Upravit"
+    },
+    "project": {
+        "name": "Název projektu",
+        "location": "Lokace",
+        "start_date": "Začátek projektu",
+        "end_date": "Konec projektu",
+        "status": "Stav",
+        "buttonNew": "Nový projekt"
     }
 }
