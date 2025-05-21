@@ -81,6 +81,7 @@ class DailyLog(models.Model):
 
 
 class Material(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="materials")
     name = models.CharField(max_length=100)
     unit = models.ForeignKey(Unit, on_delete=models.SET_NULL, null=True, blank=True, related_name="materials")
 
