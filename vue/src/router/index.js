@@ -8,6 +8,7 @@ import ProjectAddView from "@/views/project/ProjectAddView.vue";
 import ProjectEditView from "@/views/project/ProjectEditView.vue";
 import ProjectListView from "@/views/project/ProjectListView.vue";
 import ProjectDetailView from "@/views/project/ProjectDetailView.vue";
+import MaterialAddView from "@/views/material/MaterialAddView.vue";
 
 const routes = [
     {
@@ -54,6 +55,12 @@ const routes = [
         meta: {
             title: "titles.projectDetail"
         }
+    },
+
+    {
+        path: "/materials/add",
+        name: "MaterialAddView",
+        component: MaterialAddView,
     },
 ]
 
