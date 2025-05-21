@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, ProjectStatus
+from .models import Project, ProjectStatus, Unit, Material
 from accounts.serializers import UserLightSerializer
 
 
@@ -16,4 +16,18 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
+        fields = "__all__"
+
+
+class UnitSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Unit
+        fields = "__all__"
+
+
+class MaterialSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Material
         fields = "__all__"
