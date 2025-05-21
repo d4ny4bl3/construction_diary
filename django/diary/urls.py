@@ -11,5 +11,7 @@ urlpatterns = [
     path("projects/<int:project_id>/<slug:slug>/edit/", project_views.update_project, name="update_project"),
 
     path("units/", material_views.fetch_units, name="fetch_units"),
+    path("materials/", material_views.fetch_materials, name="fetch_materials"),
+    path("materials/<int:material_id>/", material_views.fetch_material, name="fetch_material"),
     path("materials/add/", material_views.create_material, name="create_material"),
 ]

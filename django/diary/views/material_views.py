@@ -18,6 +18,30 @@ def fetch_units(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_materials(request):
+    user = request.user
+
+    materials = Material.objects.filter(user=user).order_by("id")
+    serializer = MaterialSerializer(materials, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_material(request, material_id):
+    user = request.user
+
+    try:
+        material = Material.objects.get(id=material_id, user=user)
+    except Material.DoesNotExist:
+        return Response({"error": "Material not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = MaterialSerializer(material)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def create_material(request):
