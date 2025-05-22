@@ -5,7 +5,7 @@
     >
         {{ t("project.buttonNew") }}
     </RouterLink>
-    <div class="card mb-3">
+    <div class="card">
         <div class="card-header">
             <h3>{{ t("headers.projects") }}</h3>
         </div>
