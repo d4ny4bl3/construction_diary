@@ -11,6 +11,11 @@
                     <RouterLink :to="{ name: 'ProjectListView' }" class="nav-link text-white">Projekty</RouterLink>
                 </li>
             </ul>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <RouterLink :to="{ name: 'MaterialListView' }" class="nav-link text-white">Materialy</RouterLink>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
