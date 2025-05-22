@@ -1,5 +1,5 @@
 <template>
-    <h1 class="mb-3">{{ t("headers.projectDetail") }}</h1>
+    <h2 class="mb-3">{{ t("headers.projectDetail") }}</h2>
     <div class="card mb-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">

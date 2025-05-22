@@ -1,5 +1,5 @@
 <template>
-    <h1>{{ t("headers.projects") }}</h1>
+    <h2>{{ t("headers.projectAdd") }}</h2>
 
     <ProjectForm @submit="createProject" :submit-label="t('utils.create')"/>
 

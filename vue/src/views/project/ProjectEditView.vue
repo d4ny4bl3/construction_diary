@@ -1,5 +1,5 @@
 <template>
-    <h1>{{ t("headers.projectEdit") }}</h1>
+    <h2>{{ t("headers.projectEdit") }}</h2>
 
     <ProjectForm @submit="updateProject" :project="store.project" :submit-label="t('utils.saveChanges')" />
 </template>
@@ -26,7 +26,7 @@
         }
     })
 
-    const updateProject  = async (data) => {
+    const updateProject = async (data) => {
         try {
             await store.updateProject(id, slug, data)
             router.push({

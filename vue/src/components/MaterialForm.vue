@@ -62,7 +62,7 @@
         (newVal) => {
             if (newVal) {
                 name.value = newVal.name || ""
-                unit.value = newVal.unit || ""
+                unit.value = newVal.unit?.id || ""
             }
         },
         { immediate: true }

@@ -9,6 +9,7 @@ import ProjectEditView from "@/views/project/ProjectEditView.vue";
 import ProjectListView from "@/views/project/ProjectListView.vue";
 import ProjectDetailView from "@/views/project/ProjectDetailView.vue";
 import MaterialAddView from "@/views/material/MaterialAddView.vue";
+import MaterialEditView from "@/views/material/MaterialEditView.vue";
 
 const routes = [
     {
@@ -61,6 +62,11 @@ const routes = [
         path: "/materials/add",
         name: "MaterialAddView",
         component: MaterialAddView,
+    },
+    {
+        path: "/materials/:id/edit",
+        name: "MaterialEditView",
+        component: MaterialEditView
     },
 ]
 
