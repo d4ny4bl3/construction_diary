@@ -27,6 +27,7 @@ class UnitSerializer(serializers.ModelSerializer):
 
 
 class MaterialSerializer(serializers.ModelSerializer):
+    unit = UnitSerializer()
 
     class Meta:
         model = Material

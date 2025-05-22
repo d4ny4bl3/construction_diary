@@ -14,4 +14,5 @@ urlpatterns = [
     path("materials/", material_views.fetch_materials, name="fetch_materials"),
     path("materials/<int:material_id>/", material_views.fetch_material, name="fetch_material"),
     path("materials/add/", material_views.create_material, name="create_material"),
+    path("materials/<int:material_id>/edit/", material_views.update_material, name="update_material"),
 ]

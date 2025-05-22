@@ -61,3 +61,31 @@ def create_material(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     except Unit.DoesNotExist:
         return Response({"error": "Unit not found"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["PATCH"])
+@permission_classes([IsAuthenticated])
+def update_material(request, material_id):
+    user = request.user
+
+    try:
+        material = Material.objects.get(id=material_id, user=user)
+    except Material.DoesNotExist:
+        return Response({"error": "Material not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    name = request.data.get("name")
+    unit_id = request.data.get("unit")
+
+    if name:
+        material.name = name
+
+    if unit_id:
+        try:
+            unit = Unit.objects.get(id=unit_id, user=user)
+            material.unit = unit
+        except Unit.DoesNotExist:
+            return Response({"error": "Unit not found"}, status=status.HTTP_400_BAD_REQUEST)
+
+    material.save()
+
+    return Response(MaterialSerializer(material).data, status=status.HTTP_200_OK)
