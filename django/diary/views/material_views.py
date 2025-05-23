@@ -4,8 +4,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
-from diary.models import Unit, Material
-from diary.serializers import UnitSerializer, MaterialSerializer
+from diary.models import Unit, Material, MaterialPurchase
+from diary.serializers import UnitSerializer, MaterialSerializer, MaterialPurchaseSerializer
 
 
 @api_view(["GET"])
@@ -23,7 +23,7 @@ def fetch_units(request):
 def fetch_materials(request):
     user = request.user
 
-    materials = Material.objects.filter(user=user).order_by("id")
+    materials = Material.objects.filter(user=user)
     serializer = MaterialSerializer(materials, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -89,3 +89,27 @@ def update_material(request, material_id):
     material.save()
 
     return Response(MaterialSerializer(material).data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def create_material_purchase(request):
+    material_id = request.data.get("material")
+    quantity = int(request.data.get("quantity"))
+    price = int(request.data.get("price"))
+    buy_at = request.data.get("buyAt")
+
+    try:
+        material = Material.objects.get(id=material_id)
+    except Material.DoesNotExist:
+        return Response({"error": "Material not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    purchase = MaterialPurchase.objects.create(
+        material=material,
+        quantity=quantity,
+        price=price,
+        buy_at=buy_at
+    )
+
+    serializer = MaterialPurchaseSerializer(purchase)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
