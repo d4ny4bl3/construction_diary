@@ -39,6 +39,19 @@ def update_project(request, project_id, slug):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_project(request, project_id, slug):
+    user = request.user
+
+    try:
+        project = Project.objects.get(id=project_id, user=user, slug=slug)
+    except Project.DoesNotExist:
+        return Response({"error": "Project not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    project.delete()
+    return Response({"success": "Project deleted"}, status=status.HTTP_204_NO_CONTENT)
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def fetch_projects(request):

@@ -9,6 +9,7 @@ urlpatterns = [
     path("projects/add/", project_views.create_project, name="create_project"),
     path("projects/<int:project_id>/<slug:slug>/", project_views.fetch_project, name="fetch_project"),
     path("projects/<int:project_id>/<slug:slug>/edit/", project_views.update_project, name="update_project"),
+    path("projects/<int:project_id>/<slug:slug>/delete/", project_views.delete_project, name="delete_project"),
 
     path("units/", material_views.fetch_units, name="fetch_units"),
     path("materials/", material_views.fetch_materials, name="fetch_materials"),
