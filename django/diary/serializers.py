@@ -35,6 +35,8 @@ class MaterialSerializer(serializers.ModelSerializer):
 
 
 class MaterialPurchaseSerializer(serializers.ModelSerializer):
+    material_name = serializers.CharField(source="material.name")
+    material_unit = serializers.CharField(source="material.unit")
 
     class Meta:
         model = MaterialPurchase
