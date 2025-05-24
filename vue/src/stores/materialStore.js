@@ -5,7 +5,9 @@ export const useMaterialStore = defineStore("material", {
     state: () => ({
         materials: [],
         material: {},
-        units: []
+        units: [],
+        purchases: [],
+        purchase: {},
     }),
 
     actions: {
@@ -31,6 +33,25 @@ export const useMaterialStore = defineStore("material", {
         async fetchUnits() {
             const response = await api.get("/units/")
             this.units = response.data
+        },
+
+        async fetchPurchases() {
+            const response = await api.get("/purchases/")
+            this.purchases = response.data
+        },
+        async fetchPurchase(id) {
+            const response = await api.get(`/purchases/${id}/`)
+            this.purchase = response.data
+        },
+        async createPurchase(data) {
+            const response = await api.post("/purchases/add", data)
+            this.purchases.push(response.data)
+            this.purchase = response.data
+            return response.data
+        },
+        async updatePurchase(id, data) {
+            const response = await api.patch(`/purchases/${id}/edit/`, data)
+            this.material = response.data
         },
     }
 })
