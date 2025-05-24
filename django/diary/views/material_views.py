@@ -113,3 +113,25 @@ def create_material_purchase(request):
 
     serializer = MaterialPurchaseSerializer(purchase)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_material_purchase(request, purchase_id):
+    try:
+        purchase = MaterialPurchase.objects.get(id=purchase_id)
+    except MaterialPurchase.DoesNotExist:
+        return Response({"error": "Material purchase not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = MaterialPurchaseSerializer(purchase)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_material_purchases(request):
+    user = request.user
+
+    purchases = MaterialPurchase.objects.filter(material__user=user)
+    serializer = MaterialPurchaseSerializer(purchases, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
