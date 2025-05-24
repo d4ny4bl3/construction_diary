@@ -38,7 +38,12 @@
     "navbar": {
         "brand": "Stavební deník",
         "loggedInAs": "Přihlášen",
-        "logout": "Odhlásit se"
+        "logout": "Odhlásit se",
+        "dashboard": "Přehled",
+        "projects": "Projekty",
+        "store": "Sklad",
+        "materials": "Materiály",
+        "purchases": "Nákupy"
     },
     "utils": {
         "create": "Vytvořit",
