@@ -73,7 +73,7 @@ onMounted(async () => {
 })
 
 const deleteProject = async () => {
-    const confirm = window.confirm(t("confirm.deleteProject"))
+    const confirm = window.confirm(`${t("confirm.deleteProject")} "${project.value.name}"?`)
     if (!confirm) return
 
     try {

@@ -36,8 +36,8 @@ export const useProjectStore = defineStore("project", {
             this.project = response.data
         },
 
-        async deleteProject(slug) {
-            const response = await api.delete(`/projects/${slug}/`)
+        async deleteProject(id, slug) {
+            await api.delete(`/projects/${id}/${slug}/delete/`)
             this.projects = this.projects.filter(p => p.slug != slug)
         },
 

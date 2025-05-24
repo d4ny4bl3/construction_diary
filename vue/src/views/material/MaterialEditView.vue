@@ -1,5 +1,13 @@
 <template>
-    <h2>{{ t("headers.materialEdit") }}</h2>
+    <div class="d-flex justify-content-between">
+        <h2>{{ t("headers.materialEdit") }}</h2>
+        <RouterLink
+            class="btn btn-primary"
+            :to="{ name: 'MaterialListView'}"
+        >
+            {{ t("utils.back") }}
+        </RouterLink>
+    </div>
 
     <MaterialForm @submit="updateMaterial" :material="store.material" :unit="store.units" :submit-label="t('utils.saveChanges')" />
 </template>

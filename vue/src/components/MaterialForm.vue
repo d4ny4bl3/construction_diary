@@ -6,12 +6,11 @@
         </div>
         <div class="col-6">
             <label for="unit" class="form-label fw-bold">{{ t("material.unit") }}</label>
-            <select class="form-select" v-model="unit">
+            <select class="form-select" v-model="unit" required>
                 <option
                     v-for="unit in store.units"
                     :key="unit.id"
                     :value="unit.id"
-                    required
                 >
                     {{ unit.name }}
                 </option>

@@ -29,6 +29,10 @@ export const useMaterialStore = defineStore("material", {
             const response = await api.patch(`/materials/${id}/edit/`, data)
             this.material = response.data
         },
+        async deleteMaterial(id) {
+            await api.delete(`/materials/${id}/delete/`)
+            this.materials = this.materials.filter(m => m.id != id)
+        },
 
         async fetchUnits() {
             const response = await api.get("/units/")
@@ -52,6 +56,10 @@ export const useMaterialStore = defineStore("material", {
         async updatePurchase(id, data) {
             const response = await api.patch(`/purchases/${id}/edit/`, data)
             this.material = response.data
+        },
+        async deletePurchase(id) {
+            await api.delete(`/purchases/${id}/delete/`)
+            this.purchases = this.purchases.filter(p => p.id != id)
         },
     }
 })

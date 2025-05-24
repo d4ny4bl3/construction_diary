@@ -24,7 +24,7 @@
         </div>
         <div class="col-6">
             <label for="status" class="form-label fw-bold">{{ t("project.status") }}</label>
-            <select class="form-select" v-model="status">
+            <select class="form-select" v-model="status" required>
                 <option
                     v-for="status in store.statuses"
                     :key="status.id"

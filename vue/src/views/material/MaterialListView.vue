@@ -24,15 +24,23 @@
                         v-for="material in store.materials"
                         :key="material.id"
                     >
-                        <td>{{ material.name }}</td>
-                        <td>{{ material.unit.name }}</td>
-                        <td>
-                            <button
-                                class="btn btn-outline-secondary"
-                                @click="goToEdit(material)"
-                            >
-                                {{ t("utils.edit") }}
-                            </button>
+                        <td class="col-5">{{ material.name }}</td>
+                        <td class="col-2">{{ material.unit.name }}</td>
+                        <td class="col-5">
+                            <div class="d-flex gap-4 justify-content-center">
+                                <button
+                                    class="btn btn-outline-secondary"
+                                    @click="goToEdit(material.id)"
+                                >
+                                    {{ t("utils.edit") }}
+                                </button>
+                                <button
+                                    class="btn btn-outline-danger"
+                                    @click="deleteMaterial(material)"
+                                >
+                                    {{ t("utils.delete") }}
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -47,7 +55,7 @@ import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useMaterialStore } from '@/stores/materialStore';
 
-const { t, d } = useI18n()
+const { t } = useI18n()
 const store = useMaterialStore()
 const router = useRouter()
 
@@ -59,12 +67,24 @@ onMounted(() => {
     }
 })
 
-const goToEdit = (material) => {
+const goToEdit = (materialId) => {
     router.push({
         name: "MaterialEditView",
         params: {
-            id: material.id,
+            id: materialId,
         }
     })
+}
+
+const deleteMaterial = async (material) => {
+    const confirm = window.confirm(`${t("confirm.deleteMaterial")} "${material.name}"?`)
+    if (!confirm) return
+
+    try {
+        await store.deleteMaterial(material.id)
+        await store.fetchMaterials()
+    } catch (error) {
+        console.error("Error deleting material.", error)
+    }
 }
 </script>
