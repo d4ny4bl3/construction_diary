@@ -1,5 +1,13 @@
 <template>
-    <h2>{{ t("headers.projectEdit") }}</h2>
+    <div class="d-flex justify-content-between">
+        <h2>{{ t("headers.projectEdit") }}</h2>
+        <RouterLink
+            class="btn btn-primary"
+            :to="{ name: 'ProjectDetailView', params: { id: id, slug: slug}}"
+        >
+            {{ t("utils.back") }}
+        </RouterLink>
+    </div>
 
     <ProjectForm @submit="updateProject" :project="store.project" :submit-label="t('utils.saveChanges')" />
 </template>

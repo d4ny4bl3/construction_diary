@@ -4,12 +4,20 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h3>{{ store.project.name }}</h3>
-                <RouterLink
-                    :to="{ name: 'ProjectEditView', params: { id: id, slug: slug } }"
-                    class="btn btn-primary"
-                >
-                    {{ t("utils.edit") }}
-                </RouterLink>
+                <div class="d-flex gap-2">
+                    <RouterLink
+                        :to="{ name: 'ProjectEditView', params: { id: id, slug: slug } }"
+                        class="btn btn-secondary"
+                    >
+                        {{ t("utils.edit") }}
+                    </RouterLink>
+                    <button
+                        class="btn btn-danger"
+                        @click="deleteProject"
+                    >
+                        {{ t("utils.delete") }}
+                    </button>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -40,11 +48,12 @@
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useProjectStore } from '@/stores/projectStore';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
 const store = useProjectStore()
 const route = useRoute()
+const router = useRouter()
 const { t, d } = useI18n()
 
 const id = route.params.id
@@ -62,4 +71,16 @@ onMounted(async () => {
         console.error("Error loading project or statuses", error)
     }
 })
+
+const deleteProject = async () => {
+    const confirm = window.confirm(t("confirm.deleteProject"))
+    if (!confirm) return
+
+    try {
+        await store.deleteProject(id, slug)
+        router.push({ name: "ProjectListView" })
+    } catch (error) {
+        console.error("Error deleting project.", error)
+    }
+}
 </script>
