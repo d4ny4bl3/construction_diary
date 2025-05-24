@@ -3,19 +3,19 @@
         :to="{ name: 'MaterialAddView' }"
         class="btn btn-primary mb-3"
     >
-        Pridat material
+        {{ t("material.buttonNew") }}
     </RouterLink>
 
     <div class="card">
         <div class="card-header">
-            <h3>Seznam materialu</h3>
+            <h3>{{ t("headers.materials") }}</h3>
         </div>
         <div class="card-body">
             <table class="table table-striped table-hover table-responsive-md">
                 <thead>
                     <tr>
-                        <th>Nazev</th>
-                        <th>Jednotka</th>
+                        <th>{{ t("material.name") }}</th>
+                        <th>{{ t("material.unit") }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
                                 class="btn btn-outline-secondary"
                                 @click="goToEdit(material)"
                             >
-                                Upravit
+                                {{ t("utils.edit") }}
                             </button>
                         </td>
                     </tr>
@@ -59,7 +59,7 @@ onMounted(() => {
     }
 })
 
-function goToEdit(material) {
+const goToEdit = (material) => {
     router.push({
         name: "MaterialEditView",
         params: {

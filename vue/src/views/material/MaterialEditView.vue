@@ -1,5 +1,5 @@
 <template>
-    <h1>Material Edit View</h1>
+    <h2>{{ t("headers.materialEdit") }}</h2>
 
     <MaterialForm @submit="updateMaterial" :material="store.material" :unit="store.units" :submit-label="t('utils.saveChanges')" />
 </template>

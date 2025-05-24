@@ -67,16 +67,25 @@ const routes = [
         path: "/materials/add",
         name: "MaterialAddView",
         component: MaterialAddView,
+        meta: {
+            title: "titles.materialAdd"
+        }
     },
     {
         path: "/materials/:id/edit",
         name: "MaterialEditView",
-        component: MaterialEditView
+        component: MaterialEditView,
+        meta: {
+            title: "titles.materialEdit"
+        }
     },
     {
         path: "/materials",
         name: "MaterialListView",
         component: MaterialListView,
+        meta: {
+            title: "titles.materials"
+        }
     },
 
     {

@@ -13,13 +13,19 @@
         "projects": "Seznam projektů",
         "projectAdd": "Vytvořit projekt",
         "projectEdit": "Upravit projekt",
-        "projectDetail": "Detail projektu"
+        "projectDetail": "Detail projektu",
+        "materials": "Seznam materiálů",
+        "materialAdd": "Vytvořit materiál",
+        "materialEdit": "Upravit materiál"
     },
     "headers" : {
         "projects": "Seznam projektů",
-        "projectAdd": "Vytvořit projekt",
+        "projectAdd": "Nový projekt",
         "projectEdit": "Upravit projekt",
-        "projectDetail": "Detail projektu"
+        "projectDetail": "Detail projektu",
+        "materials": "Seznam materiálů",
+        "materialAdd": "Nový materiál",
+        "materialEdit": "Upravit materiál"
     },
     "navbar": {
         "brand": "Stavební deník",
@@ -43,5 +49,10 @@
         "end_date": "Konec projektu",
         "status": "Stav",
         "buttonNew": "Nový projekt"
+    },
+    "material": {
+        "name": "Název",
+        "unit": "Jednotka",
+        "buttonNew": "Nový materiál"
     }
 }

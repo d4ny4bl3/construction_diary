@@ -1,11 +1,11 @@
 <template>
     <form class="row g-3 p-3" ref="form" @submit.prevent="submit">
         <div class="col-6">
-            <label for="name" class="form-label fw-bold">Nazev</label>
+            <label for="name" class="form-label fw-bold">{{ t("material.name") }}</label>
             <input type="text" class="form-control" id="name" v-model="name" required>
         </div>
         <div class="col-6">
-            <label for="unit" class="form-label fw-bold">Jednotka</label>
+            <label for="unit" class="form-label fw-bold">{{ t("material.unit") }}</label>
             <select class="form-select" v-model="unit">
                 <option
                     v-for="unit in store.units"

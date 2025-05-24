@@ -1,5 +1,5 @@
 <template>
-    <h1>Material Add View</h1>
+    <h2>{{ t("headers.materialAdd") }}</h2>
 
     <MaterialForm @submit="createMaterial" :submit-label="t('utils.create')"/>
 </template>
