@@ -17,7 +17,7 @@
 
                 <div class="col-4">
                     <label for="quantity" class="form-label fw-bold">Množství</label>
-                    <input type="text" id="quantity" class="form-control" v-model="quantity" required>
+                    <input type="number" id="quantity" class="form-control" min="1" v-model="quantity" required>
                 </div>
 
                 <div class="col-2 pb-2">
@@ -27,11 +27,11 @@
         </div>
         <div class="col-6">
             <label for="price" class="form-label fw-bold">Cena</label>
-            <input type="text" id="price" class="form-control" v-model="price" required>
+            <input type="number" id="price" class="form-control" min="1" v-model="price" required>
         </div>
         <div class="col-6">
             <label for="pricePerUnit" class="form-label fw-bold">Cena za jednotku</label>
-            <input type="text" id="pricePerUnit" class="form-control" :value="pricePerUnit" readonly>
+            <input type="number" id="pricePerUnit" class="form-control" :value="pricePerUnit" readonly>
         </div>
         <div class="col-6">
             <label for="buyAt" class="form-label fw-bold">Zakoupeno</label>
@@ -111,7 +111,7 @@ const submit = () => {
     emit("submit", {
         material: material.value,
         quantity: quantity.value,
-        price: price.value,
+        price: parseFloat(price.value),
         buyAt: buyAt.value,
     })
 }

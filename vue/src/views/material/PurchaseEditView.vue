@@ -21,10 +21,23 @@ const id = route.params.id
 onMounted(async () => {
     try {
         await store.fetchPurchase(id)
-        // router.push
     } catch (error) {
         console.error("Error loading purchase.", error)
     }
 })
+
+const updatePurchase = async (data) => {
+    try {
+        await store.updatePurchase(id, data)
+        router.push({
+            name: "PurchaseDetailView",
+            params: {
+                id: id
+            }
+        })
+    } catch (error) {
+        console.error("Error updating purchase.", error)
+    }
+}
 
 </script>
