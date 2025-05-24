@@ -91,6 +91,20 @@ def update_material(request, material_id):
     return Response(MaterialSerializer(material).data, status=status.HTTP_200_OK)
 
 
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_material(request, material_id):
+    user = request.user
+
+    try:
+        material = Material.objects.get(id=material_id, user=user)
+    except Material.DoesNotExist:
+        return Response({"error": "Material not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    material.delete()
+    return Response({"success": "Material deleted"}, status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def create_material_purchase(request):
