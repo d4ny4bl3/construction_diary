@@ -14,6 +14,7 @@ import MaterialListView from "@/views/material/MaterialListView.vue";
 import PurchaseAddView from "@/views/material/PurchaseAddView.vue";
 import PurchaseEditView from "@/views/material/PurchaseEditView.vue";
 import PurchaseDetailView from "@/views/material/PurchaseDetailView.vue";
+import PurchaseListView from "@/views/material/PurchaseListView.vue";
 
 const routes = [
     {
@@ -92,6 +93,11 @@ const routes = [
         path: "/purchases/:id",
         name: "PurchaseDetailView",
         component: PurchaseDetailView,
+    },
+    {
+        path: "/purchases",
+        name: "PurchaseListView",
+        component: PurchaseListView,
     },
 ]
 
