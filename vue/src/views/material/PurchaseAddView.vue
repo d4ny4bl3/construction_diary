@@ -1,5 +1,5 @@
 <template>
-    <h2>Purchases Add View</h2>
+    <h2>{{ t("headers.purchaseAdd") }}</h2>
 
     <PurchaseForm @submit="createPurchase" :submit-label="t('utils.create')"/>
 </template>
@@ -16,8 +16,13 @@ const { t } = useI18n()
 
 const createPurchase = async (data) => {
     try {
-        await store.createPurchase(data)
-        // router.push
+        const created = await store.createPurchase(data)
+        router.push({
+                name: "PurchaseDetailView",
+                params: {
+                    id: created.id,
+                }
+            })
     } catch (error) {
         console.error("Error adding purchase.", error)
     }

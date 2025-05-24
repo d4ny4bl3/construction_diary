@@ -3,7 +3,7 @@
         <div class="col-12 mb-2">
             <div class="row align-items-end">
                 <div class="col-6">
-                    <label for="material" class="form-label fw-bold">Materiál</label>
+                    <label for="material" class="form-label fw-bold">{{ t("purchase.material") }}</label>
                     <select class="form-select" v-model="material" required>
                         <option
                             v-for="material in store.materials"
@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="col-4">
-                    <label for="quantity" class="form-label fw-bold">Množství</label>
+                    <label for="quantity" class="form-label fw-bold">{{ t("purchase.quantity") }}</label>
                     <input type="number" id="quantity" class="form-control" min="1" v-model="quantity" required>
                 </div>
 
@@ -26,15 +26,15 @@
             </div>
         </div>
         <div class="col-6">
-            <label for="price" class="form-label fw-bold">Cena</label>
+            <label for="price" class="form-label fw-bold">{{ t("purchase.price") }}</label>
             <input type="number" id="price" class="form-control" min="1" v-model="price" required>
         </div>
         <div class="col-6">
-            <label for="pricePerUnit" class="form-label fw-bold">Cena za jednotku</label>
+            <label for="pricePerUnit" class="form-label fw-bold">{{ t("purchase.pricePerUnit") }}</label>
             <input type="number" id="pricePerUnit" class="form-control" :value="pricePerUnit" readonly>
         </div>
         <div class="col-6">
-            <label for="buyAt" class="form-label fw-bold">Zakoupeno</label>
+            <label for="buyAt" class="form-label fw-bold">{{ t("purchase.buyAt") }}</label>
             <input type="date" class="form-control" v-model="buyAt" required>
         </div>
 
@@ -75,14 +75,10 @@ onMounted(async () => {
 })
 
 const material = ref("")
-const materialUnit = computed(() => {
-    const selected = store.materials.find(m => m.id === material.value)
-    return selected?.unit?.name || ""
-})
-
 const quantity = ref("")
 const price = ref("")
 const buyAt = ref("")
+
 const label = computed(() =>
     props.submitLabel || t("utils.create")
 )
@@ -93,6 +89,10 @@ const pricePerUnit = computed(() => {
         return (p / q).toFixed(2)
     }
     return ""
+})
+const materialUnit = computed(() => {
+    const selected = store.materials.find(m => m.id === material.value)
+    return selected?.unit?.name || ""
 })
 
 watch(() => props.purchase,

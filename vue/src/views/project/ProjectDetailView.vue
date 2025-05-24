@@ -16,19 +16,19 @@
             <div class="row">
                 <div class="col-6">
                     <dl class="row gy-3 align-items-center">
-                        <dt class="col-4">{{ t("project.start_date") }}</dt>
+                        <dt class="col-4">{{ t("project.start_date") }}:</dt>
                         <dd class="col-8">{{ project.start_date ? d(new Date(project.start_date), "dateOnly") : "--" }}</dd>
 
-                        <dt class="col-4">{{ t("project.end_date") }}</dt>
+                        <dt class="col-4">{{ t("project.end_date") }}:</dt>
                         <dd class="col-8">{{ project.end_date ? d(new Date(project.end_date), "dateOnly") : "--" }}</dd>
                     </dl>
                 </div>
                 <div class="col-6">
                     <dl class="row gy-3">
-                        <dt class="col-4">{{ t("project.location") }}</dt>
+                        <dt class="col-4">{{ t("project.location") }}:</dt>
                         <dd class="col-8">{{ project.location }}</dd>
 
-                        <dt class="col-4">{{ t("project.status") }}</dt>
+                        <dt class="col-4">{{ t("project.status") }}:</dt>
                         <dd class="col-8">{{ project.status_name }}</dd>
                     </dl>
                 </div>

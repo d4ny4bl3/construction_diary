@@ -1,9 +1,9 @@
 <template>
-    <h2 class="mb-3">Detail nakupu</h2>
+    <h2 class="mb-3">{{ t("headers.purchaseDetail") }}</h2>
     <div class="card mb-3">
         <div class="card-header">
             <div class="d-flex justify-content-between">
-                <h3>{{ material.name }} - {{ purchase.buy_at ? d(new Date(purchase.buy_at), "dateOnly") : "" }}</h3>
+                <h3>{{ purchase.material_name }} - {{ purchase.buy_at ? d(new Date(purchase.buy_at), "dateOnly") : "" }}</h3>
                 <RouterLink
                     :to="{ name: 'PurchaseEditView', params: { id: id } }"
                     class="btn btn-primary"
@@ -16,16 +16,16 @@
             <div class="row">
                 <div class="col-12">
                     <dl class="row gy-3 align-items-center">
-                        <dt class="col-6">Pouzity material:</dt>
-                        <dd class="col-6">{{ material.name }}</dd>
+                        <dt class="col-6">{{ t("purchase.usedMaterial") }}:</dt>
+                        <dd class="col-6">{{ purchase.material_name }}</dd>
 
-                        <dt class="col-6">Množství</dt>
-                        <dd class="col-6">{{ purchase.quantity }} {{ material.unit?.name }}</dd>
+                        <dt class="col-6">{{ t("purchase.quantity") }}:</dt>
+                        <dd class="col-6">{{ purchase.quantity }} {{ purchase.material_unit }}</dd>
 
-                        <dt class="col-6">Cena za jednotku:</dt>
-                        <dd class="col-6">{{ purchase.price_per_unit }} Kč</dd>
+                        <dt class="col-6">{{ t("purchase.price") }}:</dt>
+                        <dd class="col-6">{{ purchase.price }} Kč ({{ purchase.price_per_unit }} Kč/j)</dd>
 
-                        <dt class="col-6">Zakoupeno:</dt>
+                        <dt class="col-6">{{ t("purchase.buyAt") }}:</dt>
                         <dd class="col-6">{{ purchase.buy_at ? d(new Date(purchase.buy_at), "dateOnly") : "" }}</dd>
                     </dl>
                 </div>
@@ -47,16 +47,10 @@ const { t, d } = useI18n()
 const id = route.params.id
 
 const purchase = computed(() => store.purchase)
-const material = computed(() => store.material)
 
 onMounted(async () => {
     try {
         await store.fetchPurchase(id)
-
-        const materialId = store.purchase?.material
-        if (materialId) {
-            await store.fetchMaterial(materialId)
-        }
     } catch (error) {
         console.error("Error loading purchase.", error)
     }

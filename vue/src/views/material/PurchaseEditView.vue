@@ -1,5 +1,5 @@
 <template>
-    <h2>Purchases Edit View</h2>
+    <h2>{{ t("headers.purchaseEdit") }}</h2>
 
     <PurchaseForm @submit="updatePurchase" :purchase="store.purchase" :submit-label="t('utils.saveChanges')" />
 </template>

@@ -3,27 +3,27 @@
         :to="{ name: 'PurchaseAddView' }"
         class="btn btn-primary mb-3"
     >
-        Novy nakup
+        {{ t("purchase.buttonNew") }}
     </RouterLink>
     <div class="card">
         <div class="card-header">
-            <h3>Seznam nakupu</h3>
+            <h3>{{ t("headers.purchases") }}</h3>
         </div>
         <div class="card-body">
             <table class="table table-striped table-hover table-responsive-md">
                 <thead>
                     <tr>
-                        <th>Datum</th>
-                        <th>Material</th>
-                        <th>Mnozstvi</th>
-                        <th>Cena</th>
+                        <th>{{ t("purchase.date") }}</th>
+                        <th>{{ t("purchase.material") }}</th>
+                        <th>{{ t("purchase.quantity") }}</th>
+                        <th>{{ t("purchase.price") }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
                         v-for="purchase in store.purchases"
                         :key="purchase.id"
-                        @click="goToProject(purchase)"
+                        @click="goToProject(purchase.id)"
                         class="clickable-row"
                         style="cursor: pointer;"
                     >
@@ -52,11 +52,11 @@ onMounted(() => {
     store.fetchPurchases()
 })
 
-function goToProject(purchase) {
+function goToProject(purchaseId) {
     router.push({
         name: "PurchaseDetailView",
         params: {
-            id: purchase.id
+            id: purchaseId
         }
     })
 }

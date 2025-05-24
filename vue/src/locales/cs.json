@@ -16,7 +16,11 @@
         "projectDetail": "Detail projektu",
         "materials": "Seznam materiálů",
         "materialAdd": "Vytvořit materiál",
-        "materialEdit": "Upravit materiál"
+        "materialEdit": "Upravit materiál",
+        "purchases": "Seznam nákupů",
+        "purchaseAdd": "Vytvořit nákup",
+        "purchaseEdit": "Upravit nákup",
+        "purchaseDetail": "Detail nákupu"
     },
     "headers" : {
         "projects": "Seznam projektů",
@@ -25,7 +29,11 @@
         "projectDetail": "Detail projektu",
         "materials": "Seznam materiálů",
         "materialAdd": "Nový materiál",
-        "materialEdit": "Upravit materiál"
+        "materialEdit": "Upravit materiál",
+        "purchases": "Seznam nákupů",
+        "purchaseAdd": "Nový nákup",
+        "purchaseEdit": "Upravit nákup",
+        "purchaseDetail": "Detail nákupu"
     },
     "navbar": {
         "brand": "Stavební deník",
@@ -54,5 +62,15 @@
         "name": "Název",
         "unit": "Jednotka",
         "buttonNew": "Nový materiál"
+    },
+    "purchase": {
+        "date": "Datum",
+        "material": "Materiál",
+        "quantity": "Množství",
+        "price": "Cena",
+        "pricePerUnit": "Cena za jednotku",
+        "buyAt": "Zakoupeno",
+        "usedMaterial": "Použitý materiál",
+        "buttonNew": "Nový nákup"
     }
 }

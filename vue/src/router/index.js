@@ -45,6 +45,9 @@ const routes = [
         path: "/projects/:id/:slug/edit",
         name: "ProjectEditView",
         component: ProjectEditView,
+        meta: {
+            title: "titles.projectEdit"
+        }
     },
     {
         path:"/projects",
@@ -92,21 +95,33 @@ const routes = [
         path: "/purchases/add",
         name: "PurchaseAddView",
         component: PurchaseAddView,
+        meta: {
+            title: "titles.purchaseAdd"
+        }
     },
     {
         path: "/purchases/:id/edit",
         name: "PurchaseEditView",
         component: PurchaseEditView,
+        meta: {
+            title: "titles.purchaseEdit"
+        }
     },
     {
         path: "/purchases/:id",
         name: "PurchaseDetailView",
         component: PurchaseDetailView,
+        meta: {
+            title: "titles.purchaseDetail"
+        }
     },
     {
         path: "/purchases",
         name: "PurchaseListView",
         component: PurchaseListView,
+        meta: {
+            title: "titles.purchases"
+        }
     },
 ]
 
