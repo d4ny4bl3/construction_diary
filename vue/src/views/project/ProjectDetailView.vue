@@ -38,30 +38,28 @@
 </template>
 
 <script setup>
-    import { onMounted, computed } from 'vue';
-    import { useProjectStore } from '@/stores/projectStore';
-    import { useRoute } from 'vue-router';
-    import { useI18n } from 'vue-i18n';
+import { onMounted, computed } from 'vue';
+import { useProjectStore } from '@/stores/projectStore';
+import { useRoute } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
-    const store = useProjectStore()
-    const route = useRoute()
+const store = useProjectStore()
+const route = useRoute()
+const { t, d } = useI18n()
 
-    const id = route.params.id
-    const slug = route.params.slug
+const id = route.params.id
+const slug = route.params.slug
 
-    const { t, d } = useI18n()
+const project = computed(() => store.project)
 
-    const project = computed(() => store.project)
-    const statuses = computed(() => store.statuses)
-
-    onMounted(async () => {
-        try {
-            await Promise.all([
-                store.fetchProject(id, slug),
-                store.fetchStatuses()
-            ])
-        } catch (error) {
-            console.error("Error loading project or statuses", error)
-        }
-    })
+onMounted(async () => {
+    try {
+        await Promise.all([
+            store.fetchProject(id, slug),
+            store.fetchStatuses()
+        ])
+    } catch (error) {
+        console.error("Error loading project or statuses", error)
+    }
+})
 </script>
