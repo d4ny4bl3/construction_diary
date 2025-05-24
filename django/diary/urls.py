@@ -15,7 +15,9 @@ urlpatterns = [
     path("materials/<int:material_id>/", material_views.fetch_material, name="fetch_material"),
     path("materials/add/", material_views.create_material, name="create_material"),
     path("materials/<int:material_id>/edit/", material_views.update_material, name="update_material"),
+
     path("purchases/", material_views.fetch_material_purchases, name="fetch_material_purchases"),
     path("purchases/<int:purchase_id>/", material_views.fetch_material_purchase, name="fetch_material_purchase"),
+    path("purchases/<int:purchase_id>/edit/", material_views.update_material_purchase, name="update_material_purchase"),
     path("purchases/add", material_views.create_material_purchase, name="create_material_purchase"),
 ]

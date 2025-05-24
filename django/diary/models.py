@@ -157,6 +157,6 @@ class MaterialPurchase(models.Model):
     def save(self, *args, **kwargs):
         if self.quantity <= 0:
             raise ValueError("Quantity must be greater than 0")
-        if not self.price_per_unit:
+        if self.price is not None and self.quantity:
             self.price_per_unit = self.price / self.quantity
         super().save(*args, **kwargs)

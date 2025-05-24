@@ -95,8 +95,8 @@ def update_material(request, material_id):
 @permission_classes([IsAuthenticated])
 def create_material_purchase(request):
     material_id = request.data.get("material")
-    quantity = int(request.data.get("quantity"))
-    price = int(request.data.get("price"))
+    quantity = request.data.get("quantity")
+    price = request.data.get("price")
     buy_at = request.data.get("buyAt")
 
     try:
@@ -115,11 +115,42 @@ def create_material_purchase(request):
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@api_view(["PATCH"])
+@permission_classes([IsAuthenticated])
+def update_material_purchase(request, purchase_id):
+    user = request.user
+
+    try:
+        purchase = MaterialPurchase.objects.get(id=purchase_id, material__user=user)
+    except MaterialPurchase.DoesNotExist:
+        return Response({"error": "Material purchase not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    material_id = request.data.get("material")
+    quantity = request.data.get("quantity")
+    price = request.data.get("price")
+    buy_at = request.data.get("buyAt")
+
+    try:
+        material = Material.objects.get(id=material_id)
+        purchase.material = material
+    except Material.DoesNotExist:
+        return Response({"error": "Material not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    purchase.quantity = quantity
+    purchase.price = price
+    purchase.buy_at = buy_at
+    purchase.save()
+
+    return Response(MaterialPurchaseSerializer(purchase).data, status=status.HTTP_200_OK)
+
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def fetch_material_purchase(request, purchase_id):
+    user = request.user
+
     try:
-        purchase = MaterialPurchase.objects.get(id=purchase_id)
+        purchase = MaterialPurchase.objects.get(id=purchase_id, material__user=user)
     except MaterialPurchase.DoesNotExist:
         return Response({"error": "Material purchase not found"}, status=status.HTTP_404_NOT_FOUND)
 
