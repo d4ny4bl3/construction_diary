@@ -53,7 +53,13 @@
         "delete": "Smazat",
         "close": "Zavřít",
         "send": "Odeslat",
-        "edit": "Upravit"
+        "edit": "Upravit",
+        "back": "Zpět"
+    },
+    "confirm": {
+        "deleteProject": "Opravdu chcete smazat projekt",
+        "deleteMaterial": "Opravdu chcete smazat materiál",
+        "deletePurchase": "Opravdu chcete smazat nákup?"
     },
     "project": {
         "name": "Název projektu",
