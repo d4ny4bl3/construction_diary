@@ -4,12 +4,20 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <h3>{{ purchase.material_name }} - {{ purchase.buy_at ? d(new Date(purchase.buy_at), "dateOnly") : "" }}</h3>
-                <RouterLink
+                <div class="d-flex gap-2">
+                    <RouterLink
                     :to="{ name: 'PurchaseEditView', params: { id: id } }"
-                    class="btn btn-primary"
+                    class="btn btn-secondary"
                 >
                     {{ t("utils.edit") }}
                 </RouterLink>
+                <button
+                    class="btn btn-danger"
+                    @click="deletePurchase"
+                >
+                    {{ t("utils.delete") }}
+                </button>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -36,11 +44,12 @@
 
 <script setup>
 import { onMounted, computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { useMaterialStore } from '@/stores/MaterialStore'
 
 const route = useRoute()
+const router = useRouter()
 const store = useMaterialStore()
 const { t, d } = useI18n()
 
@@ -55,4 +64,16 @@ onMounted(async () => {
         console.error("Error loading purchase.", error)
     }
 })
+
+const deletePurchase = async () => {
+    const confirm = window.confirm(t("confirm.deletePurchase"))
+    if (!confirm) return
+
+    try {
+        await store.deletePurchase(id)
+        router.push({ name: "PurchaseListView" })
+    } catch (error) {
+        console.error("Error deleting purchase.", error)
+    }
+}
 </script>
