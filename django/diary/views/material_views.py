@@ -158,6 +158,20 @@ def update_material_purchase(request, purchase_id):
     return Response(MaterialPurchaseSerializer(purchase).data, status=status.HTTP_200_OK)
 
 
+@api_view(["DELETE"])
+@permission_classes([IsAuthenticated])
+def delete_material_purchase(request, purchase_id):
+    user = request.user
+
+    try:
+        purchase = MaterialPurchase.objects.get(id=purchase_id, material__user=user)
+    except MaterialPurchase.DoesNotExist:
+        return Response({"error": "Material purchase not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    purchase.delete()
+    return Response({"success": "Purchase deleted"}, status=status.HTTP_204_NO_CONTENT)
+
+
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def fetch_material_purchase(request, purchase_id):

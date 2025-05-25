@@ -19,7 +19,8 @@ urlpatterns = [
     path("materials/<int:material_id>/delete/", material_views.delete_material, name="delete_material"),
 
     path("purchases/", material_views.fetch_material_purchases, name="fetch_material_purchases"),
+    path("purchases/add", material_views.create_material_purchase, name="create_material_purchase"),
     path("purchases/<int:purchase_id>/", material_views.fetch_material_purchase, name="fetch_material_purchase"),
     path("purchases/<int:purchase_id>/edit/", material_views.update_material_purchase, name="update_material_purchase"),
-    path("purchases/add", material_views.create_material_purchase, name="create_material_purchase"),
+    path("purchases/<int:purchase_id>/delete/", material_views.delete_material_purchase, name="delete_material_purchase"),
 ]
