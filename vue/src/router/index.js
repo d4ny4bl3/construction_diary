@@ -15,6 +15,7 @@ import PurchaseAddView from "@/views/material/PurchaseAddView.vue";
 import PurchaseEditView from "@/views/material/PurchaseEditView.vue";
 import PurchaseDetailView from "@/views/material/PurchaseDetailView.vue";
 import PurchaseListView from "@/views/material/PurchaseListView.vue";
+import DailyLogAddView from "@/views/dailyLog/DailyLogAddView.vue";
 
 const routes = [
     {
@@ -122,6 +123,12 @@ const routes = [
         meta: {
             title: "titles.purchases"
         }
+    },
+
+    {
+        path: "/daily-logs/add",
+        name: "DailyLogAddView",
+        component: DailyLogAddView,
     },
 ]
 
