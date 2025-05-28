@@ -19,6 +19,20 @@ def fetch_daily_logs(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_daily_log(request, daily_id):
+    user = request.user
+
+    try:
+        daily_log = DailyLog.objects.get(id=daily_id, project__user=user)
+    except DailyLog.DoesNotExist:
+        return Response({"error": "Daily log not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = DailyLogSerializer(daily_log)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def create_daily_log(request):

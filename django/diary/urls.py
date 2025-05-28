@@ -24,5 +24,7 @@ urlpatterns = [
     path("purchases/<int:purchase_id>/edit/", material_views.update_material_purchase, name="update_material_purchase"),
     path("purchases/<int:purchase_id>/delete/", material_views.delete_material_purchase, name="delete_material_purchase"),
 
+    path("daily-logs/", daily_log_views.fetch_daily_logs, name="fetch_daily_logs"),
     path("daily-logs/add/", daily_log_views.create_daily_log, name="create_daily_log"),
+    path("daily-logs/<int:daily_id>/", daily_log_views.fetch_daily_log, name="fetch_daily_log"),
 ]
