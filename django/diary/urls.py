@@ -1,6 +1,6 @@
 from django.urls import path
 
-from diary.views import project_views, material_views
+from diary.views import project_views, material_views, daily_log_views
 
 urlpatterns = [
     path("projects/statuses/", project_views.fetch_statuses, name="fetch_statuses"),
@@ -23,4 +23,6 @@ urlpatterns = [
     path("purchases/<int:purchase_id>/", material_views.fetch_material_purchase, name="fetch_material_purchase"),
     path("purchases/<int:purchase_id>/edit/", material_views.update_material_purchase, name="update_material_purchase"),
     path("purchases/<int:purchase_id>/delete/", material_views.delete_material_purchase, name="delete_material_purchase"),
+
+    path("daily-logs/add/", daily_log_views.create_daily_log, name="create_daily_log"),
 ]

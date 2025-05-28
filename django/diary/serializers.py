@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, ProjectStatus, Unit, Material, MaterialPurchase
+from .models import Project, ProjectStatus, Unit, Material, MaterialPurchase, DailyLog
 from accounts.serializers import UserLightSerializer
 
 
@@ -40,4 +40,11 @@ class MaterialPurchaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MaterialPurchase
+        fields = "__all__"
+
+
+class DailyLogSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DailyLog
         fields = "__all__"
