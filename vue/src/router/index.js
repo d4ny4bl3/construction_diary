@@ -16,6 +16,7 @@ import PurchaseEditView from "@/views/material/PurchaseEditView.vue";
 import PurchaseDetailView from "@/views/material/PurchaseDetailView.vue";
 import PurchaseListView from "@/views/material/PurchaseListView.vue";
 import DailyLogAddView from "@/views/dailyLog/DailyLogAddView.vue";
+import DailyLogDetailView from "@/views/dailyLog/DailyLogDetailView.vue";
 
 const routes = [
     {
@@ -129,6 +130,11 @@ const routes = [
         path: "/daily-logs/add",
         name: "DailyLogAddView",
         component: DailyLogAddView,
+    },
+    {
+        path: "/daily-logs/:id",
+        name: "DailyLogDetailView",
+        component: DailyLogDetailView,
     },
 ]
 
