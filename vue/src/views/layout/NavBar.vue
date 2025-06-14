@@ -41,6 +41,12 @@
                     </ul>
                 </li>
             </ul>
+
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <RouterLink :to="{ name: 'DailyLogListView' }" class="nav-link text-white">Denni zaznamy</RouterLink>
+                </li>
+            </ul>
         </div>
     </nav>
 </template>
