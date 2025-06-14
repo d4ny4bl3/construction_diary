@@ -21,6 +21,14 @@ export const useDailyLogStore = defineStore("dailyLog", {
             this.dailyLogs.push(response.data)
             this.dailyLog = response.data
             return response.data
+        },
+        async updateDailyLog(id, data) {
+            const response = await api.patch(`/daily-logs/${id}/edit/`, data)
+            this.material = response.data
+        },
+        async deleteDailyLog(id) {
+            await api.delete(`/daily-logs/${id}/delete/`)
+            this.dailyLogs = this.dailyLogs.filter(d => d.id != id)
         }
     }
 })
