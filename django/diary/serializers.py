@@ -44,6 +44,7 @@ class MaterialPurchaseSerializer(serializers.ModelSerializer):
 
 
 class DailyLogSerializer(serializers.ModelSerializer):
+    project_name = serializers.CharField(source="project.name")
 
     class Meta:
         model = DailyLog
