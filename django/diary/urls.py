@@ -29,4 +29,9 @@ urlpatterns = [
     path("daily-logs/<int:daily_log_id>/", daily_log_views.fetch_daily_log, name="fetch_daily_log"),
     path("daily-logs/<int:daily_log_id>/edit/", daily_log_views.update_daily_log, name="update_daily_log"),
     path("daily-logs/<int:daily_log_id>/delete/", daily_log_views.delete_daily_log, name="delete_daily_log"),
+
+    path("daily-logs/<int:daily_log_id>/usages/", daily_log_views.fetch_material_usages, name="fetch_material_usages"),
+    path("daily-logs/<int:daily_log_id>/usages/add/", daily_log_views.create_material_usage, name="create_material_usage"),
+    path("daily-logs/<int:daily_log_id>/usages/<int:usage_id>/", daily_log_views.fetch_material_usage, name="fetch_material_usage"),
+    path("daily-logs/<int:daily_log_id>/usages/<int:usage_id>/delete", daily_log_views.delete_material_usage, name="delete_material_usage"),
 ]

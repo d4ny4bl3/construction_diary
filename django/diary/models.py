@@ -132,12 +132,17 @@ class MaterialUsage(models.Model):
         return f"{self.daily_log.date.strftime('%Y-%m-%d')} - {self.material.name} {self.used_quantity}"
 
     def clean(self):
-        if self.used_quantity > (self.material.stock or 0):
+        if self.used_quantity <= 0:
+            raise ValidationError("Used quantity must be greater than zero.")
+
+        if self.material and self.used_quantity > self.material.stock:
             raise ValidationError("Insufficient amount of material in stock.")
 
     def save(self, *args, **kwargs):
         if not self.used_at:
             self.used_at = self.daily_log.date
+
+        self.full_clean()
         super().save(*args, **kwargs)
 
 

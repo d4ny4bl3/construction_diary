@@ -4,9 +4,10 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 from datetime import time
+from django.core.exceptions import ValidationError
 
-from diary.models import DailyLog, Project
-from diary.serializers import DailyLogSerializer
+from diary.models import DailyLog, Material, MaterialUsage, Project
+from diary.serializers import DailyLogSerializer, MaterialUsageSerializer
 
 
 @api_view(["GET"])
@@ -111,4 +112,84 @@ def delete_daily_log(request, daily_log_id):
         return Response({"error": "Daily log not found"}, status=status.HTTP_404_NOT_FOUND)
 
     daily_log.delete()
-    return Response({"success": "Daily log deleted"}, status=status.HTTP_204_NO_CONTENT)
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_material_usages(request, daily_log_id):
+    user = request.user
+
+    usages = (
+        MaterialUsage.objects
+        .filter(daily_log=daily_log_id, material__user=user)
+        .select_related("material", "material__unit")
+    )
+    serializer = MaterialUsageSerializer(usages, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def fetch_material_usage(request, daily_log_id, usage_id):
+    user = request.user
+
+    try:
+        usage = MaterialUsage.objects.get(id=usage_id, daily_log=daily_log_id, material__user=user)
+    except MaterialUsage.DoesNotExist:
+        return Response({"error": "Material usage not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = MaterialUsageSerializer(usage)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def create_material_usage(request, daily_log_id):
+    user = request.user
+
+    material_id = request.data.get("material")
+    used_quantity = request.data.get("used_quantity")
+    used_at = request.data.get("used_at")
+
+    try:
+        daily_log = DailyLog.objects.get(id=daily_log_id, project__user=user)
+        material = Material.objects.get(id=material_id, user=user)
+
+        material_usage = MaterialUsage(
+            daily_log=daily_log,
+            material=material,
+            used_quantity=used_quantity,
+            used_at=used_at
+        )
+        material_usage.save()
+
+    except ValidationError as e:
+        return Response({"error": e.messages}, status=status.HTTP_400_BAD_REQUEST)
+    except DailyLog.DoesNotExist:
+        return Response({"error": "Daily log not found"}, status=status.HTTP_404_NOT_FOUND)
+    except Material.DoesNotExist:
+        return Response({"error": "Material not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = MaterialUsageSerializer(material_usage)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def update_material_usage(request, daily_log_id, usage_id):
+    pass
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def delete_material_usage(request, daily_log_id, usage_id):
+    user = request.user
+
+    try:
+        usage = MaterialUsage.objects.get(id=usage_id, daily_log=daily_log_id, material__user=user)
+    except MaterialUsage.DoesNotExist:
+        return Response({"error": "Material usage not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    usage.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
