@@ -11,11 +11,11 @@
             <h3>{{ t("headers.materials") }}</h3>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-hover table-responsive-md">
+            <table class="table table-striped table-hover table-responsive-md text-center">
                 <thead>
                     <tr>
                         <th>{{ t("material.name") }}</th>
-                        <th>{{ t("material.unit") }}</th>
+                        <th>{{ t("material.stock") }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -25,7 +25,7 @@
                         :key="material.id"
                     >
                         <td class="col-5">{{ material.name }}</td>
-                        <td class="col-2">{{ material.unit.name }}</td>
+                        <td class="col-2">{{ material.stock }} {{ material.unit.name }}</td>
                         <td class="col-5">
                             <div class="d-flex gap-4 justify-content-center">
                                 <button

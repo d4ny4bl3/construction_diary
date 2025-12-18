@@ -10,7 +10,7 @@
             <h3>{{ t("headers.projects") }}</h3>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-hover table-responsive-md">
+            <table class="table table-striped table-hover table-responsive-md text-center">
                 <thead>
                     <tr>
                         <th>{{ t("project.name") }}</th>

@@ -3,20 +3,20 @@
         :to="{ name: 'DailyLogAddView' }"
         class="btn btn-primary mb-3"
     >
-        Novy zaznam
+        {{ t("dailyLog.buttonNew") }}
     </RouterLink>
 
     <div class="card">
         <div class="card-header">
-            <h3>Seznam dennich zaznamu</h3>
+            <h3>{{ t("dailyLog.list") }}</h3>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-hover table-responsive-md">
+            <table class="table table-striped table-hover table-responsive-md text-center">
                 <thead>
                     <tr>
-                        <th>Projekt</th>
-                        <th>Popis</th>
-                        <th>Datum</th>
+                        <th>{{ t("dailyLog.project") }}</th>
+                        <th>{{ t("dailyLog.description") }}</th>
+                        <th>{{ t("dailyLog.date") }}</th>
                     </tr>
                 </thead>
                 <tbody>

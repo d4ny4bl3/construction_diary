@@ -72,6 +72,7 @@
     "material": {
         "name": "Název",
         "unit": "Jednotka",
+        "stock": "Skladem",
         "buttonNew": "Nový materiál"
     },
     "purchase": {
@@ -83,5 +84,26 @@
         "buyAt": "Zakoupeno",
         "usedMaterial": "Použitý materiál",
         "buttonNew": "Nový nákup"
+    },
+    "dailyLog": {
+        "buttonNew": "Nový záznam",
+        "list": "Seznam denních záznamů",
+        "project": "Projekt",
+        "description": "Popis",
+        "date": "Datum",
+        "detail": "Detail záznamu",
+        "title": "Název",
+        "from": "Od",
+        "to": "Do",
+        "duration": "Čas práce"
+    },
+    "materialUsage": {
+        "label": "Použitý materiál",
+        "add": "Přidat materiál",
+        "name": "Název",
+        "quantity": "Množství",
+        "date": "Datum",
+        "usedQuantity": "Použité množství",
+        "availableOnly": "K dispozici je pouze"
     }
 }
