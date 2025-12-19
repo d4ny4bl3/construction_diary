@@ -18,7 +18,8 @@ api.interceptors.response.use(
     response => response,
     error => {
       if (error.response && [401, 403].includes(error.response.status)) {
-        router.push({ name: 'login' })
+        console.warn("SESSION EXPIRED – redirecting to login")
+        router.push({ name: 'Login' })
       }
       return Promise.reject(error)
     }
