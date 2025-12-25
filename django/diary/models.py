@@ -2,7 +2,7 @@ from datetime import datetime, date
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
-from django.db.models import Sum, F
+from django.db.models import Sum
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 
@@ -118,6 +118,7 @@ class Material(models.Model):
         adds = self.purchases.aggregate(total=Sum("quantity"))["total"] or 0
         usages = self.material_usages.aggregate(total=Sum("used_quantity"))["total"] or 0
         return adds - usages
+
 
 class MaterialUsage(models.Model):
     daily_log = models.ForeignKey(DailyLog, on_delete=models.CASCADE, related_name="daily_usages")
