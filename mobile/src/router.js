@@ -1,32 +1,41 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router'
-import TabsLayout from '@/views/TabsLayout.vue'
+import MainLayout from '@/views/layouts/MainLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      component: TabsLayout,
+      component: MainLayout,
       children: [
-        { path: "/", redirect: "/tab1"},
         {
-          path: "tab1",
-          component: () => import("@/views/TabOne.vue")
-        },
-        {
-          path: "tab2",
-          component: () => import("@/views/TabTwo.vue")
+          path: "",
+          component: () => import("@/views/layouts/TabsLayout.vue"),
+          children: [
+            { path: "/", redirect: { name: "Dashboard" }},
+            {
+              path: "dashboard",
+              name: "Dashboard",
+              component: () => import("@/views/Dashboard.vue")
+            },
+            {
+              path: "projects",
+              name: "ProjectList",
+              component: () => import("@/views/projects/ProjectListView.vue")
+            },
+            {
+              path: "materials",
+              name: "MaterialList",
+              component: () => import("@/views/materials/MaterialListView.vue")
+            },
+            {
+              path: "settings",
+              name: "Settings",
+              component: () => import("@/views/SettingsView.vue")
+            },
+          ]
         },
       ]
-    },
-
-    {
-      path: "/a",
-      component: () => import("@/views/Ham1.vue")
-    },
-    {
-      path: "/b",
-      component: () => import("@/views/Ham2.vue")
     },
   ],
 })
